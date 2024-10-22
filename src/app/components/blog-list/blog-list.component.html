@@ -1,0 +1,31 @@
+<h2>Blog List</h2>
+
+<button pButton label="Add Record" (click)="showAddRecordDialog()" styleClass="chv-light-blue-btn" ></button>
+<p-table [value]="Blogs" [(selection)]="selectedBlog">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">Id</th>
+      <th pSortableColumn="username">Username</th>
+      <th pSortableColumn="text">Text</th>
+      <th pSortableColumn="dateCreated">Date Created</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{rowData.id}}</td>
+      <td>{{rowData.username}}</td>
+      <td>{{rowData.text}}</td>
+      <td>{{rowData.dateCreated}}</td>
+      <td>
+        <button pButton label="Edit" icon="pi pi-pencil" (click)="openEditDialog(rowData)"></button>
+      </td>
+      <td>
+        <button pButton label="Delete" icon="pi pi-trash" (click)="deleteBlog(rowData.id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<app-add-record-dialog [(visible)]="displayAddRecordDialog" (onClose)="closeAddRecordDialog()" (onSaveAndClose)="saveRecordAndClose($event)"></app-add-record-dialog>
+<app-add-record-dialog [originalRecord]="selectedBlog" [(visible)]="displayEditRecordDialog" (onClose)="closeEditRecordDialog()" (onSaveAndClose)="saveEditRecordAndClose($event)"></app-add-record-dialog>

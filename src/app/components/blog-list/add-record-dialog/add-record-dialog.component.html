@@ -1,0 +1,43 @@
+<form [formGroup]="addRecordForm" novalidate>
+  <p-dialog [(visible)]="visible" [modal]="true" [style]="{height:'70vh'}" [closable]="false" (onShow)="showDialog()">
+    <ng-template pTemplate="header">
+      <div style="width:100%;color: white; padding: 10px; position: relative;display: flex; flex-wrap: wrap;background-color:#0B2D71;margin-top:0px">
+        <h3 style="margin: 0;">Add Record</h3>
+        <button style="position: absolute; right: 5px;top:5px;background-color:#0B2D71;border-color:#0B2D71" pButton icon="pi pi-times" (click)="closeDialog()"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <div class="p-fluid" [style]="{width: '60vw'}">
+        <!-- Username Field -->
+        <div class="p-field p-grid">
+          <label for="username" class="p-col-12 p-md-3">Username: </label>
+          <div class="p-col-12 p-md-9">
+            <input id="username" pInputText formControlName="username" />
+          </div>
+        </div>
+
+        <!-- Date Created Field -->
+        <div class="p-field p-grid">
+          <label for="dateCreated" class="p-col-12 p-md-3">Date Created: </label>
+          <div class="p-col-12 p-md-9">
+            <p-calendar id="date" [showIcon]="true" inputId="dateCreated" formControlName="dateCreated" dateFormat="mm/dd/yy"></p-calendar>
+          </div>
+        </div>
+
+        <!-- Text Field -->
+        <div class="p-field p-grid">
+          <label for="text" class="p-col-12 p-md-3">Text</label>
+          <div class="p-col-12 p-md-9">
+            <input id="text" pInputText formControlName="text" />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <p-footer>
+      <button pButton type="button" label="Reset" icon="pi pi-refresh" (click)="resetDialog()"></button>
+      <button pButton type="button" label="Cancel" icon="pi pi-times" (click)="closeDialog()"></button>
+      <button pButton type="button" label="Save" icon="pi pi-check" (click)="saveRecordAndClose()"></button>
+    </p-footer>
+  </p-dialog>
+</form>
